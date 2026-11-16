@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devall96</title>
+<meta name="description" content="Things Devall96 has released, and the repos they help out on.">
+<meta name="theme-color" content="#06121c">
+<link rel="icon" href="https://github.com/devall96.png?size=64">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>
+  /* Pick the theme before anything draws, so the page never flashes the wrong one. */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("theme-v2"); } catch (e) {}
+    if (!t) t = matchMedia("(prefers-color-scheme: light)").matches ? "skies" : "deepsea";
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<style>
+  /* ---------- Themes ----------
+     Each theme borrows its colours from one of the projects:
+     Deep Sea (Nettle), Sheikah (Slate Companion), Temple (TempleFrog), Clear Skies (ClearSkies). */
+  :root, :root[data-theme="deepsea"] {
+    color-scheme: dark;
+    --bg: #05101a;
+    --bg-2: #0b1d2b;
+    --surface: rgba(10, 28, 42, .62);
+    --surface-hi: rgba(16, 40, 58, .75);
+    --ink: #e6f4fb;
+    --ink-2: #a3c0cf;
+    --ink-3: #6e8c9d;
+    --line: rgba(120, 190, 230, .16);
+    --accent: #2fd0f5;
+    --accent-2: #7d8bff;
+    --accent-ink: #03121b;
+    --tag: rgba(47, 208, 245, .12);
+    --tag-ink: #8de6fb;
+    --blob-1: #0a7fae;
+    --blob-2: #3340b5;
+    --blob-3: #0c9a8e;
+    --pattern-opacity: .07;
+    --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='white'/%3E%3C/svg%3E");
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 18px 40px -18px rgba(0,0,0,.6);
+    --header: rgba(5, 16, 26, .6);
+  }
+  :root[data-theme="sheikah"] {
+    color-scheme: dark;
+    --bg: #070c11;
+    --bg-2: #0f1a22;
+    --surface: rgba(12, 24, 32, .66);
+    --surface-hi: rgba(18, 34, 44, .78);
+    --ink: #e2f3fb;
+    --ink-2: #a0b7c3;
+    --ink-3: #68818d;
+    --line: rgba(56, 200, 255, .2);
+    --accent: #ff9a3d;
+    --accent-2: #38c8ff;
+    --accent-ink: #1c0e00;
+    --tag: rgba(56, 200, 255, .11);
+    --tag-ink: #86deff;
+    --blob-1: #0d6a8e;
+    --blob-2: #12344c;
+    --blob-3: #8a4510;
+    --pattern-opacity: .09;
+    --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%2338c8ff' stroke-width='1'/%3E%3C/svg%3E");
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.65);
+    --header: rgba(7, 12, 17, .62);
+  }
+  :root[data-theme="temple"] {
+    color-scheme: dark;
+    --bg: #110e07;
+    --bg-2: #1c170e;
+    --surface: rgba(32, 26, 15, .66);
+    --surface-hi: rgba(44, 36, 20, .78);
+    --ink: #f4efdc;
+    --ink-2: #c8bd98;
+    --ink-3: #8d8262;
+    --line: rgba(210, 185, 120, .17);
+    --accent: #9be31c;
+    --accent-2: #f0bf4c;
+    --accent-ink: #132000;
+    --tag: rgba(155, 227, 28, .12);
+    --tag-ink: #c2f171;
+    --blob-1: #3f6410;
+    --blob-2: #6a4512;
+    --blob-3: #1d5233;
+    --pattern-opacity: .06;
+    --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cpath d='M0 .5H48M0 12.5H48M.5 0V12M24.5 12V24' fill='none' stroke='%23f0d9a0' stroke-width='1'/%3E%3C/svg%3E");
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.65);
+    --header: rgba(17, 14, 7, .62);
+  }
+  :root[data-theme="skies"] {
+    color-scheme: light;
+    --bg: #e7f2ff;
+    --bg-2: #d6e7f9;
+    --surface: rgba(255, 255, 255, .7);
+    --surface-hi: rgba(255, 255, 255, .88);
+    --ink: #0e2340;
+    --ink-2: #3b5474;
+    --ink-3: #647a96;
+    --line: rgba(30, 80, 140, .15);
+    --accent: #1f6fd6;
+    --accent-2: #e0a01a;
+    --accent-ink: #ffffff;
+    --tag: #e1eefc;
+    --tag-ink: #1b5cb0;
+    --blob-1: #8cc2ff;
+    --blob-2: #ffe08a;
+    --blob-3: #c2b4ff;
+    --pattern-opacity: .1;
+    --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%231f6fd6'/%3E%3C/svg%3E");
+    --shadow: 0 1px 2px rgba(20,50,90,.06), 0 18px 40px -20px rgba(20,60,120,.28);
+    --header: rgba(231, 242, 255, .66);
+  }
+
+  /* ---------- Base ---------- */
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 Inter, system-ui, sans-serif;
+    min-height: 100vh;
+    transition: background-color .4s ease, color .4s ease;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { position: relative; max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- Background ----------
+     Three big soft lights drift very slowly behind a faint pattern.
+     Slow and smooth on purpose: no flashing, and it stops for reduced motion. */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--bg); transition: background-color .4s ease; }
+  .blob {
+    position: absolute; width: 62vmax; height: 62vmax; border-radius: 50%;
+    filter: blur(90px); opacity: .5; will-change: transform;
+    transition: background-color .6s ease;
+  }
+  .blob.b1 { background: var(--blob-1); top: -28vmax; left: -18vmax; animation: drift1 70s ease-in-out infinite alternate; }
+  .blob.b2 { background: var(--blob-2); top: 10vmax; right: -26vmax; animation: drift2 85s ease-in-out infinite alternate; }
+  .blob.b3 { background: var(--blob-3); bottom: -34vmax; left: 12vmax; animation: drift3 95s ease-in-out infinite alternate; opacity: .4; }
+  :root[data-theme="skies"] .blob { opacity: .7; }
+  @keyframes drift1 { to { transform: translate(14vmax, 10vmax) scale(1.1); } }
+  @keyframes drift2 { to { transform: translate(-16vmax, 8vmax) scale(.92); } }
+  @keyframes drift3 { to { transform: translate(10vmax, -12vmax) scale(1.08); } }
+  .pattern {
+    position: absolute; inset: 0; background-image: var(--pattern); opacity: var(--pattern-opacity);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 85%);
+            mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 85%);
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: .06; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blob { animation: none !important; }
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  /* ---------- Header ---------- */
+  .top {
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    background: var(--header); border-bottom: 1px solid transparent;
+    transition: border-color .3s ease, background-color .4s ease;
+  }
+  .top.scrolled { border-bottom-color: var(--line); }
+  .top .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; gap: 12px; }
+  .mark { display: flex; align-items: center; gap: 10px; font: 800 18px/1 "Bricolage Grotesque", sans-serif; text-decoration: none; letter-spacing: -.01em; }
+  .mark img { width: 28px; height: 28px; border-radius: 50%; }
+  .mark span { color: var(--accent); }
+  .top nav { display: flex; gap: 4px; align-items: center; font-size: 14px; color: var(--ink-2); }
+  .top nav > a { text-decoration: none; padding: 8px 10px; border-radius: 8px; }
+  .top nav > a:hover { color: var(--ink); background: var(--tag); }
+  @media (max-width: 560px) { .top nav > a.opt { display: none; } }
+
+  /* theme picker */
+  .picker { position: relative; margin-left: 6px; }
+  .picker-btn {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+    padding: 6px 10px 6px 7px; border-radius: 999px; font: 600 13px Inter, sans-serif;
+  }
+  .picker-btn:hover { border-color: var(--accent); }
+  .swatch {
+    width: 20px; height: 20px; border-radius: 50%; flex: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+  }
+  .sw-deepsea { background: conic-gradient(from 200deg, #2fd0f5, #7d8bff, #05101a, #2fd0f5); }
+  .sw-sheikah { background: conic-gradient(from 200deg, #38c8ff, #ff9a3d, #070c11, #38c8ff); }
+  .sw-temple  { background: conic-gradient(from 200deg, #9be31c, #f0bf4c, #110e07, #9be31c); }
+  .sw-skies   { background: conic-gradient(from 200deg, #ffe08a, #1f6fd6, #e7f2ff, #ffe08a); }
+  .menu {
+    position: absolute; right: 0; top: calc(100% + 8px); width: 236px; padding: 6px;
+    background: var(--surface-hi); border: 1px solid var(--line); border-radius: 14px;
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: var(--shadow);
+    display: none;
+  }
+  .menu.open { display: block; }
+  .menu button {
+    width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer;
+    background: none; border: 0; color: var(--ink); padding: 9px 10px; border-radius: 10px; font: inherit;
+  }
+  .menu button:hover, .menu button:focus-visible { background: var(--tag); outline: none; }
+  .menu button .swatch { width: 26px; height: 26px; }
+  .menu b { display: block; font-weight: 600; font-size: 14px; }
+  .menu small { display: block; color: var(--ink-3); font-size: 12px; line-height: 1.3; }
+  .menu button[aria-checked="true"] { background: var(--tag); }
+  .menu button[aria-checked="true"]::after { content: "✓"; margin-left: auto; color: var(--accent); font-weight: 700; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 72px 0 40px; }
+  .hello { display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); margin: 0 0 22px; }
+  .avatar-ring {
+    flex: none; padding: 3px; border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent));
+    box-shadow: 0 0 40px -6px var(--accent);
+  }
+  .avatar {
+    display: block; width: clamp(68px, 13vw, 108px); height: clamp(68px, 13vw, 108px);
+    border-radius: 50%; border: 3px solid var(--bg); background: var(--bg-2); object-fit: cover;
+  }
+  .hero h1 {
+    font: 800 clamp(40px, 8.5vw, 80px)/1 "Bricolage Grotesque", sans-serif;
+    letter-spacing: -.035em; margin: 0;
+  }
+  .grad {
+    background: linear-gradient(100deg, var(--accent) 10%, var(--accent-2) 90%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--ink-2); max-width: 640px; margin: 0; }
+  .hero .bio {
+    display: inline-block; margin-top: 16px; font: 500 14px/1.5 "JetBrains Mono", monospace; color: var(--ink-3);
+    border-left: 2px solid var(--accent); padding: 2px 0 2px 12px;
+  }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .stat {
+    display: flex; align-items: center; gap: 8px; text-decoration: none;
+    border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px 7px 10px;
+    font-size: 14px; color: var(--ink-2); background: var(--surface);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .stat:hover { border-color: var(--accent); color: var(--ink); }
+  .stat b { color: var(--ink); font: 700 14px "JetBrains Mono", monospace; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .dot.alt { background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 40px 0; }
+  .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 8px 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .kicker { display: block; font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .sec-head h2 { font: 700 clamp(24px, 3.4vw, 30px)/1.15 "Bricolage Grotesque", sans-serif; letter-spacing: -.015em; margin: 0; }
+  .sec-head p { margin: 0; color: var(--ink-3); font-size: 14px; }
+
+  .glass {
+    background: var(--surface); border: 1px solid var(--line);
+    backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    box-shadow: var(--shadow);
+  }
+
+  /* released cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr)); gap: 18px; }
+  .card {
+    --pc: var(--accent);
+    position: relative; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px); border-color: color-mix(in srgb, var(--pc) 60%, transparent);
+    box-shadow: var(--shadow), 0 20px 50px -20px color-mix(in srgb, var(--pc) 70%, transparent);
+  }
+  .banner { display: block; aspect-ratio: 10 / 3; background: var(--bg-2); overflow: hidden; position: relative; }
+  .banner::after { content: ""; position: absolute; inset: auto 0 0; height: 2px; background: var(--pc); opacity: .85; }
+  .banner img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+  .card:hover .banner img { transform: scale(1.04); }
+  .card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .card h3 { font: 700 22px/1.2 "Bricolage Grotesque", sans-serif; margin: 0; letter-spacing: -.01em; }
+  .ver {
+    font: 700 12px/1 "JetBrains Mono", monospace; padding: 6px 9px; border-radius: 7px; white-space: nowrap;
+    color: var(--pc); background: color-mix(in srgb, var(--pc) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pc) 35%, transparent);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--tag); color: var(--tag-ink); }
+  .card p { margin: 0; color: var(--ink-2); font-size: 15px; flex: 1; }
+  .meta { font-size: 13px; color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    font-size: 14px; font-weight: 600; text-decoration: none; padding: 9px 15px; border-radius: 11px;
+    border: 1px solid var(--line); color: var(--ink); background: transparent; display: inline-flex; align-items: center; gap: 6px;
+    transition: border-color .15s ease, background-color .15s ease, transform .15s ease;
+  }
+  .btn:hover { border-color: var(--ink-3); background: var(--tag); }
+  .btn.primary { background: var(--pc, var(--accent)); color: #0a0f14; border-color: transparent; }
+  .btn.primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn svg { width: 14px; height: 14px; }
+
+  /* contributing rows */
+  .list { display: grid; gap: 12px; }
+  .row {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 8px 18px; align-items: center;
+    border-radius: 16px; padding: 14px 16px; transition: border-color .2s ease;
+  }
+  .row:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+  .thumb {
+    width: 168px; aspect-ratio: 4 / 1; border-radius: 10px; overflow: hidden; display: grid; place-items: center;
+    background: var(--bg-2); border: 1px solid var(--line); text-decoration: none;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb.text { font: 800 16px/1 "Bricolage Grotesque", sans-serif; color: #fff; letter-spacing: -.01em; border: 0; }
+  /* SuperWonders: the launcher's "Wonder Night" look (deep indigo backdrop, cyan glow, hot pink title). */
+  .thumb.wonder {
+    color: #ff5ea8; letter-spacing: 0;
+    background:
+      radial-gradient(circle at 64% 42%, rgba(86, 214, 255, .28), rgba(86, 214, 255, 0) 60%),
+      linear-gradient(180deg, #0a081e, #2c1858 50%, #0a081e);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 94, 168, .55);
+    text-shadow: 0 0 14px rgba(255, 94, 168, .45);
+  }
+  .thumb.retired { background: repeating-linear-gradient(135deg, var(--bg-2) 0 10px, transparent 10px 20px), var(--surface-hi); color: var(--ink-3); font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+  .row h3 { margin: 0; font: 700 19px/1.3 "Bricolage Grotesque", sans-serif; }
+  .row h3 small { font: 500 12px "JetBrains Mono", monospace; color: var(--ink-3); margin-left: 8px; }
+  .row p { margin: 4px 0 0; color: var(--ink-2); font-size: 14px; }
+  .row .actions { justify-content: flex-end; }
+  @media (max-width: 720px) {
+    .row { grid-template-columns: 1fr; }
+    .thumb { width: 100%; }
+    .row .actions { justify-content: flex-start; }
+    .row h3 small { display: block; margin: 2px 0 0; }
+  }
+  .retired .row { opacity: .75; }
+  .retired .row:hover { opacity: 1; }
+
+  footer {
+    border-top: 1px solid var(--line); margin-top: 40px; padding: 28px 0 56px; color: var(--ink-3); font-size: 14px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* entrance */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="pattern"></div>
+  <div class="grain"></div>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="mark" href="./"><img src="https://github.com/devall96.png?size=64" alt="">devall96<span>.</span></a>
+    <nav>
+      <a class="opt" href="#released">Released</a>
+      <a class="opt" href="#contributing">Contributing</a>
+      <a href="https://github.com/devall96">GitHub</a>
+      <div class="picker">
+        <button class="picker-btn" id="pickerBtn" aria-haspopup="menu" aria-expanded="false" aria-controls="themeMenu">
+          <span class="swatch" id="pickerSwatch"></span><span id="pickerName">Theme</span>
+        </button>
+        <div class="menu" id="themeMenu" role="menu" aria-label="Theme"></div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero reveal">
+    <div class="hello">
+      <span class="avatar-ring"><img class="avatar" src="https://github.com/devall96.png?size=216" alt="Devall96's GitHub profile picture" width="108" height="108"></span>
+      <h1>Hi, I'm <span class="grad">Devall96</span>.</h1>
+    </div>
+    <p class="lead">I make game recompilations, mods, companion apps and a media player, mostly for Windows, Linux and Android TV.</p>
+    <p class="bio">"im a jack of all trades that knows a little about a alot. im also an idiot."</p>
+    <div class="stats">
+      <a class="stat" href="#released"><span class="dot"></span><b id="statReleased">4</b> released projects</a>
+      <a class="stat" href="#contributing"><span class="dot alt"></span><b id="statContrib">2</b> repos I contribute to</a>
+    </div>
+  </div>
+
+  <section id="released" class="reveal">
+    <div class="sec-head">
+      <div><span class="kicker">01 / Released</span><h2>Things I've released</h2></div>
+      <p>Each one has its own page with downloads.</p>
+    </div>
+    <div class="grid" id="releasedGrid"></div>
+  </section>
+
+  <section id="contributing" class="reveal">
+    <div class="sec-head">
+      <div><span class="kicker">02 / Contributing</span><h2>Other repos I work on</h2></div>
+      <p>Projects run by other people that I send pull requests to.</p>
+    </div>
+    <div class="list" id="contribList"></div>
+  </section>
+
+  <section class="retired reveal" id="retired">
+    <div class="sec-head">
+      <div><span class="kicker">03 / Retired</span><h2>Retired</h2></div>
+      <p>No longer maintained.</p>
+    </div>
+    <div class="list" id="retiredList"></div>
+  </section>
+
+  <footer>
+    <span>devall96.github.io</span>
+    <a href="https://github.com/devall96">github.com/devall96</a>
+  </footer>
+</main>
+
+<script>
+const USER = "devall96";
+
+/* Extra info the GitHub API doesn't have. Keyed by repo name. color = the project's own accent. */
+const EXTRA = {
+  Nettle:         { color: "#1fb8e6", banner: "images/banner.png", tags: ["App", "Windows", "Linux", "Android TV"], blurb: "A fast, good-looking Jellyfin client. Direct play only, a live NostalgiaTV guide, Seerr requests and zero telemetry. Beta: testers wanted." },
+  SlateCompanion: { color: "#f28a2e", banner: "art/banner.png", tags: ["Companion app", "Windows", "Linux"], blurb: "A Sheikah Slate for your PC. Save sync, the in-game map from your own game files, live Link from Savage Wind, quests, cooking and the compendium." },
+  TempleFrog:     { color: "#6fb312", banner: "art/banner.png", tags: ["Recomp", "GBA", "Windows", "Linux"], blurb: "Frogger's Adventures: Temple of the Frog on PC as a static recompilation, with enhanced audio, filters, save states, rewind, controller support and five languages. Bring your own ROM and BIOS." },
+  ClearSkies:     { color: "#3a86de", banner: "art/banner.png", tags: ["Mod", "Savage Wind"], blurb: "A mod for Savage Wind Recomp that adds Cemu's Clarity look to Breath of the Wild, with all 20 presets." },
+};
+
+/* Used straight away, and kept if the GitHub API can't be reached. */
+const RELEASED_FALLBACK = [
+  { name: "Nettle",         version: "v1.1.0", updated: "2026-11-15" },
+  { name: "SlateCompanion", version: "v0.4.1", updated: "2026-11-15" },
+  { name: "TempleFrog",     version: "v0.1.0", updated: "2026-11-16" },
+  { name: "ClearSkies",     version: "v0.2.1", updated: "2026-11-12" },
+];
+
+const CONTRIBUTING = [
+  { name: "Savage Wind Recomp", upstream: "Revivedx/SavageWindRecomp",
+    image: "https://raw.githubusercontent.com/Revivedx/SavageWindRecomp/HEAD/docs/media/banner.png",
+    desc: "A work-in-progress static recompilation of The Legend of Zelda: Breath of the Wild for Windows and Linux." },
+  { name: "SuperWonders", upstream: "vfjoo888/SuperWonders", thumbText: "SuperWonders", thumbClass: "wonder",
+    desc: "A static recompilation of Super Mario Bros. Wonder for Switch 1." },
+];
+
+const RETIRED = [
+  { name: "Slop of the Wild", repo: "Slop-of-the-Wild", thumbText: "Retired", thumbClass: "retired",
+    desc: "My earlier Breath of the Wild project. Use Savage Wind instead.", link: "https://github.com/Revivedx/SavageWindRecomp", linkText: "Go to Savage Wind" },
+];
+
+const THEMES = [
+  { id: "deepsea", name: "Deep Sea", note: "Nettle's jellyfish blues", meta: "#05101a" },
+  { id: "sheikah", name: "Sheikah",  note: "Slate Companion's glow",   meta: "#070c11" },
+  { id: "temple",  name: "Temple",   note: "TempleFrog's jungle stone", meta: "#110e07" },
+  { id: "skies",   name: "Clear Skies", note: "A bright, light theme", meta: "#e7f2ff" },
+];
+
+const ICON_EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+const ICON_CODE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>';
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const fmtDate = iso => {
+  const d = new Date(iso);
+  return isNaN(d) ? "" : d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+};
+
+function renderReleased(items) {
+  document.getElementById("releasedGrid").innerHTML = items.map(r => {
+    const x = EXTRA[r.name] || {};
+    const desc = x.blurb || (r.description || "").replace(/\s*Made with AI \(Claude\)\.?\s*$/, "");
+    const tags = (x.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join("");
+    const site = `https://${USER}.github.io/${encodeURIComponent(r.name)}/`;
+    const repo = `https://github.com/${USER}/${encodeURIComponent(r.name)}`;
+    const style = x.color ? ` style="--pc:${x.color}"` : "";
+    return `
+      <article class="card glass"${style}>
+        <a class="banner" href="${site}" tabindex="-1" aria-hidden="true">
+          <img src="${site}${x.banner || "art/banner.png"}" alt="" loading="lazy" onerror="this.parentNode.remove()">
+        </a>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>${esc(r.name)}</h3>
+            ${r.version ? `<span class="ver">${esc(r.version)}</span>` : ""}
+          </div>
+          ${tags ? `<div class="tags">${tags}</div>` : ""}
+          <p>${esc(desc)}</p>
+          ${r.updated ? `<div class="meta">Last release ${esc(fmtDate(r.updated))}</div>` : ""}
+          <div class="actions">
+            <a class="btn primary" href="${site}">Open site ${ICON_EXT}</a>
+            <a class="btn" href="${repo}">${ICON_CODE} Source</a>
+          </div>
+        </div>
+      </article>`;
+  }).join("");
+  document.getElementById("statReleased").textContent = items.length;
+}
+
+function renderLists() {
+  const thumb = (img, text, cls, href) => img
+    ? `<a class="thumb" href="${href}" tabindex="-1" aria-hidden="true"><img src="${img}" alt="" loading="lazy"></a>`
+    : `<a class="thumb text ${cls || ""}" href="${href}" tabindex="-1" aria-hidden="true">${esc(text)}</a>`;
+  document.getElementById("contribList").innerHTML = CONTRIBUTING.map(c => `
+    <div class="row glass">
+      ${thumb(c.image, c.thumbText, c.thumbClass, "https://github.com/" + c.upstream)}
+      <div>
+        <h3>${esc(c.name)}<small>${esc(c.upstream)}</small></h3>
+        <p>${esc(c.desc)}</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://github.com/${c.upstream}">Project ${ICON_EXT}</a>
+        <a class="btn" href="https://github.com/${c.upstream}/pulls?q=is%3Apr+author%3A${USER}">My PRs</a>
+      </div>
+    </div>`).join("");
+  document.getElementById("statContrib").textContent = CONTRIBUTING.length;
+
+  document.getElementById("retiredList").innerHTML = RETIRED.map(r => `
+    <div class="row glass">
+      ${thumb(r.image, r.thumbText, r.thumbClass, "https://github.com/" + USER + "/" + r.repo)}
+      <div>
+        <h3>${esc(r.name)}</h3>
+        <p>${esc(r.desc)}</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="${r.link}">${esc(r.linkText)} ${ICON_EXT}</a>
+      </div>
+    </div>`).join("");
+}
+
+/* Live data: every non-fork repo with a Pages site counts as "released". */
+async function loadLive() {
+  const KEY = "released-cache-v1";
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(KEY) || "null");
+    if (cached && Date.now() - cached.t < 30 * 60 * 1000) return cached.items;
+  } catch (e) {}
+
+  const res = await fetch(`https://api.github.com/users/${USER}/repos?per_page=100&type=owner`);
+  if (!res.ok) throw new Error("repos " + res.status);
+  const repos = (await res.json()).filter(r =>
+    r.has_pages && !r.fork && !r.archived && r.name.toLowerCase() !== `${USER}.github.io`);
+
+  const items = await Promise.all(repos.map(async r => {
+    let version = "", updated = r.pushed_at;
+    try {
+      const rel = await fetch(`https://api.github.com/repos/${USER}/${r.name}/releases/latest`);
+      if (rel.ok) { const j = await rel.json(); version = j.tag_name; updated = j.published_at; }
+    } catch (e) {}
+    return { name: r.name, description: r.description, version, updated };
+  }));
+  items.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+
+  try { sessionStorage.setItem(KEY, JSON.stringify({ t: Date.now(), items })); } catch (e) {}
+  return items;
+}
+
+/* Theme picker, remembered per visitor. */
+(function themes() {
+  const root = document.documentElement;
+  const btn = document.getElementById("pickerBtn");
+  const menu = document.getElementById("themeMenu");
+  const metaColor = document.querySelector('meta[name="theme-color"]');
+
+  menu.innerHTML = THEMES.map(t => `
+    <button role="menuitemradio" data-theme="${t.id}">
+      <span class="swatch sw-${t.id}"></span><span><b>${t.name}</b><small>${t.note}</small></span>
+    </button>`).join("");
+
+  function apply(id, save) {
+    const t = THEMES.find(x => x.id === id) || THEMES[0];
+    root.dataset.theme = t.id;
+    document.getElementById("pickerSwatch").className = "swatch sw-" + t.id;
+    document.getElementById("pickerName").textContent = t.name;
+    metaColor.setAttribute("content", t.meta);
+    menu.querySelectorAll("button").forEach(b => b.setAttribute("aria-checked", b.dataset.theme === t.id));
+    if (save) { try { localStorage.setItem("theme-v2", t.id); } catch (e) {} }
+  }
+  function setOpen(open) {
+    menu.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open);
+    if (open) (menu.querySelector('[aria-checked="true"]') || menu.querySelector("button")).focus();
+  }
+
+  apply(root.dataset.theme, false);
+  btn.addEventListener("click", e => { e.stopPropagation(); setOpen(!menu.classList.contains("open")); });
+  menu.addEventListener("click", e => {
+    const b = e.target.closest("button[data-theme]");
+    if (b) { apply(b.dataset.theme, true); setOpen(false); btn.focus(); }
+  });
+  menu.addEventListener("keydown", e => {
+    const items = [...menu.querySelectorAll("button")];
+    const i = items.indexOf(document.activeElement);
+    if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+    if (e.key === "ArrowUp")   { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+  });
+  document.addEventListener("click", e => { if (!e.target.closest(".picker")) setOpen(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && menu.classList.contains("open")) { setOpen(false); btn.focus(); } });
+})();
+
+/* Header border once scrolled, and a gentle fade-in for each section. */
+(function motion() {
+  const top = document.getElementById("top");
+  const onScroll = () => top.classList.toggle("scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  const els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) { els.forEach(el => el.classList.add("in")); return; }
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+  }), { threshold: .08 });
+  els.forEach(el => io.observe(el));
+})();
+
+renderReleased(RELEASED_FALLBACK.slice().sort((a, b) => new Date(b.updated) - new Date(a.updated)));
+renderLists();
+loadLive().then(items => { if (items.length) renderReleased(items); }).catch(() => {});
+</script>
+</body>
+</html>
