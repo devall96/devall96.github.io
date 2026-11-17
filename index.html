@@ -22,7 +22,7 @@
 <style>
   /* ---------- Themes ----------
      Each theme borrows its colours from one of the projects:
-     Deep Sea (Nettle), Sheikah (Slate Companion), Temple (TempleFrog), Clear Skies (ClearSkies). */
+     Deep Sea (Nettle), Sheikah (Slate Companion), Temple (TempleFrog), Lab (Unchained), Clear Skies (ClearSkies). */
   :root, :root[data-theme="deepsea"] {
     color-scheme: dark;
     --bg: #05101a;
@@ -91,6 +91,29 @@
     --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cpath d='M0 .5H48M0 12.5H48M.5 0V12M24.5 12V24' fill='none' stroke='%23f0d9a0' stroke-width='1'/%3E%3C/svg%3E");
     --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.65);
     --header: rgba(17, 14, 7, .62);
+  }
+  :root[data-theme="lab"] {
+    color-scheme: dark;
+    --bg: #051618;
+    --bg-2: #092628;
+    --surface: rgba(6, 30, 32, .66);
+    --surface-hi: rgba(10, 46, 46, .78);
+    --ink: #ebf8f0;
+    --ink-2: #a9cbbb;
+    --ink-3: #6f978a;
+    --line: rgba(57, 242, 138, .18);
+    --accent: #39f28a;
+    --accent-2: #e0343a;
+    --accent-ink: #03170d;
+    --tag: rgba(57, 242, 138, .12);
+    --tag-ink: #8ff5be;
+    --blob-1: #0d5a46;
+    --blob-2: #0b3a3c;
+    --blob-3: #5a1a1f;
+    --pattern-opacity: .08;
+    --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 .5H40M.5 0V40' fill='none' stroke='%2339f28a' stroke-width='1'/%3E%3C/svg%3E");
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.65);
+    --header: rgba(5, 22, 24, .62);
   }
   :root[data-theme="skies"] {
     color-scheme: light;
@@ -195,6 +218,7 @@
   .sw-deepsea { background: conic-gradient(from 200deg, #2fd0f5, #7d8bff, #05101a, #2fd0f5); }
   .sw-sheikah { background: conic-gradient(from 200deg, #38c8ff, #ff9a3d, #070c11, #38c8ff); }
   .sw-temple  { background: conic-gradient(from 200deg, #9be31c, #f0bf4c, #110e07, #9be31c); }
+  .sw-lab     { background: conic-gradient(from 200deg, #39f28a, #e0343a, #051618, #39f28a); }
   .sw-skies   { background: conic-gradient(from 200deg, #ffe08a, #1f6fd6, #e7f2ff, #ffe08a); }
   .menu {
     position: absolute; right: 0; top: calc(100% + 8px); width: 236px; padding: 6px;
@@ -430,10 +454,12 @@ const EXTRA = {
   SlateCompanion: { color: "#f28a2e", banner: "art/banner.png", tags: ["Companion app", "Windows", "Linux"], blurb: "A Sheikah Slate for your PC. Save sync, the in-game map from your own game files, live Link from Savage Wind, quests, cooking and the compendium." },
   TempleFrog:     { color: "#6fb312", banner: "art/banner.png", tags: ["Recomp", "GBA", "Windows", "Linux"], blurb: "Frogger's Adventures: Temple of the Frog on PC as a static recompilation, with enhanced audio, filters, save states, rewind, controller support and five languages. Bring your own ROM and BIOS." },
   ClearSkies:     { color: "#3a86de", banner: "art/banner.png", tags: ["Mod", "Savage Wind"], blurb: "A mod for Savage Wind Recomp that adds Cemu's Clarity look to Breath of the Wild, with all 20 presets." },
+  Unchained:      { color: "#39f28a", banner: "art/banner.png", tags: ["Recomp", "Original Xbox", "Windows", "Linux"], blurb: "Whiplash (original Xbox, 2003) as a native PC port: a static recompilation with full resolution, real widescreen, Vulkan, FSR 1 and controller prompts. Bring your own copy. Testers wanted." },
 };
 
 /* Used straight away, and kept if the GitHub API can't be reached. */
 const RELEASED_FALLBACK = [
+  { name: "Unchained",      version: "v0.1",   updated: "2026-11-17" },
   { name: "Nettle",         version: "v1.1.0", updated: "2026-11-15" },
   { name: "SlateCompanion", version: "v0.4.1", updated: "2026-11-15" },
   { name: "TempleFrog",     version: "v0.1.0", updated: "2026-11-16" },
@@ -457,6 +483,7 @@ const THEMES = [
   { id: "deepsea", name: "Deep Sea", note: "Nettle's jellyfish blues", meta: "#05101a" },
   { id: "sheikah", name: "Sheikah",  note: "Slate Companion's glow",   meta: "#070c11" },
   { id: "temple",  name: "Temple",   note: "TempleFrog's jungle stone", meta: "#110e07" },
+  { id: "lab",     name: "Lab",      note: "Unchained's terminal green", meta: "#051618" },
   { id: "skies",   name: "Clear Skies", note: "A bright, light theme", meta: "#e7f2ff" },
 ];
 
