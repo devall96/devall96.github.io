@@ -382,6 +382,8 @@
   }
   footer a { text-decoration: none; }
   footer a:hover { color: var(--ink); }
+  footer { align-items: center; }
+  .support { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
   /* entrance */
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
@@ -455,6 +457,13 @@
 
   <footer>
     <span>devall96.github.io</span>
+    <div class="support">
+      <span>Enjoying my projects?</span>
+      <a class="btn primary" href="https://ko-fi.com/devall96" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M7 2v2M11 2v2M15 2v2"/></svg>
+        Support me on Ko-fi
+      </a>
+    </div>
     <a href="https://github.com/devall96">github.com/devall96</a>
   </footer>
 </main>
